@@ -21,3 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "DoRun"
 include(":app")
+include(":auth:data")
+include(":auth:domain")
+include(":auth:presentation")
