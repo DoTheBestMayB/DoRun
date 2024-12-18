@@ -1,6 +1,6 @@
 plugins {
+    alias(libs.plugins.dorun.android.application.compose)
     alias(libs.plugins.mapsplatform.secrets.plugin)
-    alias(libs.plugins.dorun.android.application)
 }
 
 android {
@@ -8,10 +8,6 @@ android {
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildFeatures {
-        compose = true
     }
 }
 
