@@ -122,3 +122,4 @@ mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.
 dorun-android-application = { id = "dorun.android.application", version = "unspecified"}
 dorun-android-application-compose = { id = "dorun.android.application.compose", version = "unspecified"}
 dorun-android-library = { id = "dorun.android.library", version = "unspecified"}
+dorun-android-library-compose = { id = "dorun.android.library.compose", version = "unspecified"}
