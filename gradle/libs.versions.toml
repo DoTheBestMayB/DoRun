@@ -123,3 +123,20 @@ dorun-android-application = { id = "dorun.android.application", version = "unspe
 dorun-android-application-compose = { id = "dorun.android.application.compose", version = "unspecified"}
 dorun-android-library = { id = "dorun.android.library", version = "unspecified"}
 dorun-android-library-compose = { id = "dorun.android.library.compose", version = "unspecified"}
+dorun-android-feature-ui = { id = "dorun.android.feature.ui", version = "unspecified"}
+
+[bundles]
+compose = [
+    "androidx-activity-compose",
+    "androidx-lifecycle-runtime-compose",
+    "androidx-lifecycle-viewmodel-compose",
+    "androidx-compose-ui",
+    "androidx-compose-ui-graphics",
+    "androidx-compose-ui-tooling-preview"
+]
+compose-debug = [
+    "androidx-compose-ui-tooling",
+    "androidx-compose-ui-test-manifest",
+]
+koin = ["koin-core", "koin-android", "koin-android-workmanager"]
+koin-compose = ["koin-core", "koin-android", "koin-android-workmanager", "koin-androidx-compose"]
