@@ -125,6 +125,7 @@ dorun-android-library = { id = "dorun.android.library", version = "unspecified"}
 dorun-android-library-compose = { id = "dorun.android.library.compose", version = "unspecified"}
 dorun-android-feature-ui = { id = "dorun.android.feature.ui", version = "unspecified"}
 dorun-android-room = { id = "dorun.android.room", version = "unspecified"}
+dorun-jvm-libray = { id = "dorun.jvm.library", version = "unspecified"}
 
 [bundles]
 compose = [
