@@ -126,6 +126,7 @@ dorun-android-library-compose = { id = "dorun.android.library.compose", version 
 dorun-android-feature-ui = { id = "dorun.android.feature.ui", version = "unspecified"}
 dorun-android-room = { id = "dorun.android.room", version = "unspecified"}
 dorun-jvm-libray = { id = "dorun.jvm.library", version = "unspecified"}
+dorun-jvm-ktor = { id = "dorun.jvm.ktor", version = "unspecified"}
 
 [bundles]
 compose = [
@@ -142,3 +143,11 @@ compose-debug = [
 ]
 koin = ["koin-core", "koin-android", "koin-android-workmanager"]
 koin-compose = ["koin-core", "koin-android", "koin-android-workmanager", "koin-androidx-compose"]
+ktor = [
+    "ktor-client-auth",
+    "ktor-client-cio",
+    "ktor-client-content-negotiation",
+    "ktor-client-core",
+    "ktor-client-logging",
+    "ktor-serialization-kotlinx-json"
+]
