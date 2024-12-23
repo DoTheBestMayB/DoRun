@@ -1,29 +1,28 @@
 [versions]
 agp = "8.7.3"
-kotlin = "2.0.10"
+kotlin = "2.1.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
-composeBom = "2024.11.00"
+composeBom = "2024.12.01"
 appcompat = "1.7.0"
 material = "1.12.0"
 jetbrainsKotlinJvm = "2.0.10"
-androidTools = "31.2.2"
+androidTools = "31.7.3"
 core = "1.10.3"
 play = "2.1.0"
 coreSplashscreen = "1.0.1"
 coilCompose = "2.6.0"
-composeCompiler = "1.5.9"
-desugar_jdk_libs = "2.1.3"
-ktor = "2.3.8"
-ktorClientLogging = "2.3.8"
+desugar_jdk_libs = "2.1.4"
+ktor = "2.3.12"
+ktorClientLogging = "2.3.12"
 ktorServerCallLogging = "2.3.7"
 koin = "3.5.6"
-materialIconsExtended = "1.7.5"
-navigationCompose = "2.8.4"
+materialIconsExtended = "1.7.6"
+navigationCompose = "2.8.5"
 securityCryptoKtx = "1.1.0-alpha06"
 timber = "5.0.1"
 ksp = "2.1.0-1.0.29"
@@ -43,8 +42,8 @@ annotation = "1.9.1"
 projectApplicationId = "com.dothebestmayb.dorun"
 projectVersionName = "1.0"
 projectMinSdkVersion = "26"
-projectTargetSdkVersion = "34"
-projectCompileSdkVersion = "34"
+projectTargetSdkVersion = "35"
+projectCompileSdkVersion = "35"
 projectVersionCode = "1"
 
 [libraries]
@@ -108,7 +107,6 @@ ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devto
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
 
 [plugins]
-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
@@ -118,6 +116,7 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 room = { id = "androidx.room", version.ref = "room" }
 androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "agp" }
 mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin"}
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref="kotlin"}
 
 dorun-android-application = { id = "dorun.android.application", version = "unspecified"}
 dorun-android-application-compose = { id = "dorun.android.application.compose", version = "unspecified"}
