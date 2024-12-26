@@ -20,6 +20,10 @@ dependencyResolutionManagement {
     }
 }
 
+// build 시 존재하지 않는 Test 파일 관련한 아래 에러를 수정하기 위한 코드
+// Unable to make progress running work. There are items queued for execution but none of them can be started
+gradle.startParameter.excludedTaskNames.addAll(listOf(":build-logic:convention:testClasses"))
+
 rootProject.name = "DoRun"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")

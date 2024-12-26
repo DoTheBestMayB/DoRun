@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dorun">DoRun</string>
+    <string name="welcome_to_dorun">Welcome to DoRun!</string>
+    <string name="dorun_description">Tack your runs, set goals and achieve fitness milestones with our intuitive app.</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
+</resources>
