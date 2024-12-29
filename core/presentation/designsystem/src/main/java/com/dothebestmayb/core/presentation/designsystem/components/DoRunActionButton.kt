@@ -50,21 +50,21 @@ fun DoRunActionButton(
                 .padding(vertical = 8.dp),
             contentAlignment = Alignment.Center,
         ) {
-        CircularProgressIndicator(
-            modifier = Modifier
-                .size(15.dp)
-                .alpha(if (isLoading) 1f else 0f),
-            strokeWidth = 1.5.dp,
-            color = MaterialTheme.colorScheme.onPrimary,
-        )
-        Text(
-            text = text,
-            // 로딩시 Text를 그리지 않고, 로딩 후에 그릴 경우 다른 UI가 밀리면서 갑자기 나타나는 것처럼 보인다.
-            // 이것을 방지하기 위해 투명도를 조절해서 보이지 않도록 설
-            modifier = Modifier
-                .alpha(if (isLoading) 0f else 1f),
-            fontWeight = FontWeight.Medium,
-        )
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .size(15.dp)
+                    .alpha(if (isLoading) 1f else 0f),
+                strokeWidth = 1.5.dp,
+                color = MaterialTheme.colorScheme.onPrimary,
+            )
+            Text(
+                text = text,
+                // 로딩시 Text를 그리지 않고, 로딩 후에 그릴 경우 다른 UI가 밀리면서 갑자기 나타나는 것처럼 보인다.
+                // 이것을 방지하기 위해 투명도를 조절해서 보이지 않도록 설
+                modifier = Modifier
+                    .alpha(if (isLoading) 0f else 1f),
+                fontWeight = FontWeight.Medium,
+            )
         }
     }
 }
@@ -77,7 +77,7 @@ fun DoRunOutlinedActionButton(
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
-    OutlinedButton (
+    OutlinedButton(
         onClick = onClick,
         enabled = enabled,
         colors = ButtonDefaults.outlinedButtonColors(

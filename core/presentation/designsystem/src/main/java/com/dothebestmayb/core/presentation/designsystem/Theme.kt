@@ -19,6 +19,7 @@ val DarkColorScheme = darkColorScheme(
     onBackground = DorunWhite,
     onSurface = DorunWhite,
     onSurfaceVariant = DorunGray,
+    error = DorunDarkRed,
 )
 
 // darkTheme, dynamicColor는 지원하지 않으므로 삭제함
