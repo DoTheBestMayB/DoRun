@@ -37,8 +37,8 @@ fun DoRunActionButton(
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.primary,
             contentColor = MaterialTheme.colorScheme.onPrimary,
-            disabledContentColor = DorunGray,
-            disabledContainerColor = DorunBlack,
+            disabledContainerColor = DorunGray,
+            disabledContentColor = DorunBlack,
         ),
         shape = RoundedCornerShape(100f),
         modifier = modifier
