@@ -50,6 +50,8 @@ dependencies {
     // Crypto
     implementation(libs.androidx.security.crypto.ktx)
 
+    implementation(libs.bundles.koin)
+
     // api : 이 모듈을 추가한 모듈도 해당 라이브러리를 사용할 수 있다.
     api(libs.app.update.ktx)
     api(libs.feature.delivery)
