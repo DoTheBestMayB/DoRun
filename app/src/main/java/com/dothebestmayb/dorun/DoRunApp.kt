@@ -3,6 +3,7 @@ package com.dothebestmayb.dorun
 import android.app.Application
 import com.dothebestmayb.auth.data.di.authDataModule
 import com.dothebestmayb.auth.presentation.di.authViewModelModule
+import com.dothebestmayb.core.data.di.coreDataModule
 import com.dothebestmayb.dorun.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -27,6 +28,7 @@ class DoRunApp: Application() {
                 authDataModule,
                 authViewModelModule,
                 appModule,
+                coreDataModule,
             )
         }
     }

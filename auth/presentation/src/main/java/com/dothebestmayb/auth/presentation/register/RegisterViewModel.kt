@@ -7,16 +7,30 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dothebestmayb.auth.domain.AuthRepository
 import com.dothebestmayb.auth.domain.UserDataValidator
+import com.dothebestmayb.auth.presentation.R
+import com.dothebestmayb.core.domain.util.DataError
+import com.dothebestmayb.core.domain.util.Result
+import com.dothebestmayb.core.presentation.ui.UiText
+import com.dothebestmayb.core.presentation.ui.asUiText
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
+import org.koin.core.qualifier.qualifier
 
 class RegisterViewModel(
     private val userDataValidator: UserDataValidator,
+    private val repository: AuthRepository,
 ) : ViewModel() {
 
     var state by mutableStateOf(RegisterState())
         private set
+
+    private val eventChannel = Channel<RegisterEvent> {  }
+    val events = eventChannel.receiveAsFlow()
 
     init {
         // email이 변경될 때마다 호출됨
@@ -42,7 +56,41 @@ class RegisterViewModel(
     }
 
     fun onAction(action: RegisterAction) {
+        when (action) {
+            RegisterAction.OnRegisterClick -> register()
+            RegisterAction.OnTogglePasswordVisibilityCheck -> {
+                state = state.copy(
+                    isPasswordVisible = !state.isPasswordVisible
+                )
+            }
+            else -> Unit
+        }
+    }
 
+    private fun register() {
+        viewModelScope.launch {
+            state = state.copy(isRegistering = true)
+            val result = repository.register(
+                email = state.email.text.toString().trim(), // state.email.toString()으로 하면 안 되는것에 주의
+                password = state.password.text.toString()
+            )
+            state = state.copy(isRegistering = false)
+
+            when (result) {
+                is Result.Error -> {
+                    if (result.error == DataError.Network.CONFLICT) {
+                        eventChannel.send(RegisterEvent.Error(
+                            UiText.StringResource(R.string.error_email_exists)
+                        ))
+                    } else {
+                        eventChannel.send(RegisterEvent.Error(result.error.asUiText()))
+                    }
+                }
+                is Result.Success -> {
+                    eventChannel.send(RegisterEvent.RegistrationSuccess)
+                }
+            }
+        }
     }
 }
 

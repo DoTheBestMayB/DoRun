@@ -12,4 +12,5 @@ dependencies {
     implementation(projects.core.database)
 
     implementation(libs.timber)
+    implementation(libs.bundles.koin)
 }
