@@ -64,6 +64,15 @@ class HttpClientFactory(
                     // cf) 401 Unauthorized Error
                     refreshTokens {
                         val info = sessionStorage.get()
+
+                        // refreshToken이 없으면 accessToken을 갱신할 수 없으므로 skip
+                        if (info?.refreshToken.isNullOrEmpty()) {
+                            return@refreshTokens BearerTokens(
+                                accessToken = "",
+                                refreshToken = "",
+                            )
+                        }
+
                         val response = client.post<AccessTokenRequest, AccessTokenResponse>(
                             route = "/accessToken",
                             body = AccessTokenRequest(
