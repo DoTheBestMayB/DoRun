@@ -1,10 +1,8 @@
 package com.dothebestmayb.auth.presentation.register
 
-import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dothebestmayb.auth.domain.AuthRepository
@@ -14,12 +12,12 @@ import com.dothebestmayb.core.domain.util.DataError
 import com.dothebestmayb.core.domain.util.Result
 import com.dothebestmayb.core.presentation.ui.UiText
 import com.dothebestmayb.core.presentation.ui.asUiText
+import com.dothebestmayb.core.presentation.ui.textAsFlow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import org.koin.core.qualifier.qualifier
 
 class RegisterViewModel(
     private val userDataValidator: UserDataValidator,
@@ -92,9 +90,4 @@ class RegisterViewModel(
             }
         }
     }
-}
-
-
-fun TextFieldState.textAsFlow() = snapshotFlow {
-    text
 }

@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.dothebestmayb.auth.presentation.intro.IntroScreenRoot
+import com.dothebestmayb.auth.presentation.login.LoginScreenRot
 import com.dothebestmayb.auth.presentation.register.RegisterScreenRoot
 
 @Composable
@@ -20,6 +21,7 @@ fun NavigationRoot(
         navController = navController,
     ) {
         authGraph(navController)
+        runGraph(navController)
     }
 }
 
@@ -58,7 +60,35 @@ private fun NavGraphBuilder.authGraph(navController: NavController) {
             )
         }
         composable("login") {
-            Text(text = "Login")
+            LoginScreenRot(
+                onLoginSuccess = {
+                    navController.navigate("run") {
+                        popUpTo("auth") {
+                            inclusive = true
+                        }
+                    }
+                },
+                onSignUpClick = {
+                    navController.navigate("register") {
+                        popUpTo("login") {
+                            inclusive = true
+                            saveState = true
+                        }
+                        restoreState = true
+                    }
+                }
+            )
+        }
+    }
+}
+
+private fun NavGraphBuilder.runGraph(navController: NavController) {
+    navigation(
+        startDestination = "run_overview",
+        route = "run"
+    ) {
+        composable("run_overview") {
+            Text(text = "Run overview!")
         }
     }
 }
