@@ -40,7 +40,7 @@ import com.dothebestmayb.core.presentation.ui.ObserveAsEvents
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun LoginScreenRot(
+fun LoginScreenRoot(
     onLoginSuccess: () -> Unit,
     onSignUpClick: () -> Unit,
     viewModel: LoginViewModel = koinViewModel()

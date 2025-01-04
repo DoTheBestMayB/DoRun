@@ -9,7 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.dothebestmayb.auth.presentation.intro.IntroScreenRoot
-import com.dothebestmayb.auth.presentation.login.LoginScreenRot
+import com.dothebestmayb.auth.presentation.login.LoginScreenRoot
 import com.dothebestmayb.auth.presentation.register.RegisterScreenRoot
 
 @Composable
@@ -60,7 +60,7 @@ private fun NavGraphBuilder.authGraph(navController: NavController) {
             )
         }
         composable("login") {
-            LoginScreenRot(
+            LoginScreenRoot(
                 onLoginSuccess = {
                     navController.navigate("run") {
                         popUpTo("auth") {
