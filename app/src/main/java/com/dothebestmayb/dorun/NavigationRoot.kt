@@ -15,9 +15,10 @@ import com.dothebestmayb.auth.presentation.register.RegisterScreenRoot
 @Composable
 fun NavigationRoot(
     navController: NavHostController,
+    isLoggedIn: Boolean,
 ) {
     NavHost(
-        startDestination = "auth",
+        startDestination = if (isLoggedIn) "run" else "auth",
         navController = navController,
     ) {
         authGraph(navController)

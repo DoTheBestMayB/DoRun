@@ -3,7 +3,9 @@ package com.dothebestmayb.dorun.di
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import com.dothebestmayb.dorun.MainViewModel
 import org.koin.android.ext.koin.androidApplication
+import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 // dynamic feature module에서 koin을 사용하면 flexibility가 좋다고 한다.
@@ -20,4 +22,6 @@ val appModule = module {
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )
     }
+
+    viewModelOf(::MainViewModel)
 }
