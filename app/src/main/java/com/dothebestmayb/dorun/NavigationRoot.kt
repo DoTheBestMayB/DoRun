@@ -11,6 +11,7 @@ import androidx.navigation.navigation
 import com.dothebestmayb.auth.presentation.intro.IntroScreenRoot
 import com.dothebestmayb.auth.presentation.login.LoginScreenRoot
 import com.dothebestmayb.auth.presentation.register.RegisterScreenRoot
+import com.dothebestmayb.run.presentation.active_run.ActiveRunScreenRoot
 import com.dothebestmayb.run.presentation.run_overview.RunOverViewScreenRoot
 
 @Composable
@@ -90,7 +91,14 @@ private fun NavGraphBuilder.runGraph(navController: NavController) {
         route = "run"
     ) {
         composable("run_overview") {
-            RunOverViewScreenRoot()
+            RunOverViewScreenRoot(
+                onStartRunClick = {
+                    navController.navigate("active_run")
+                }
+            )
+        }
+        composable("active_run") {
+            ActiveRunScreenRoot()
         }
     }
 }
