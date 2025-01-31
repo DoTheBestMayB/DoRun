@@ -35,6 +35,7 @@ import com.dothebestmayb.core.presentation.designsystem.components.DoRunToolbar
 import com.dothebestmayb.run.presentation.R
 import com.dothebestmayb.run.presentation.active_run.components.RunDataCard
 import com.dothebestmayb.run.presentation.active_run.maps.TrackerMap
+import com.dothebestmayb.run.presentation.active_run.service.ActiveRunService
 import com.dothebestmayb.run.presentation.util.hasLocationPermission
 import com.dothebestmayb.run.presentation.util.hasNotificationPermission
 import com.dothebestmayb.run.presentation.util.shouldShowLocationPermissionRationale
@@ -43,10 +44,12 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ActiveRunScreenRoot(
+    onServiceToggle: (isServiceRunning: Boolean) -> Unit,
     viewModel: ActiveRunViewModel = koinViewModel()
 ) {
     ActiveRunEventScreen(
         state = viewModel.state,
+        onServiceToggle = onServiceToggle,
         onAction = viewModel::onAction
     )
 }
@@ -54,6 +57,7 @@ fun ActiveRunScreenRoot(
 @Composable
 private fun ActiveRunEventScreen(
     state: ActiveRunState,
+    onServiceToggle: (isServiceRunning: Boolean) -> Unit, // 여기서 Activity에 대한 Reference를 가지고 Service를 호출할 수 없기 때문에 bubble up 방식으로 호출함
     onAction: (ActiveRunAction) -> Unit
 ) {
     val context = LocalContext.current
@@ -108,6 +112,18 @@ private fun ActiveRunEventScreen(
 
         if (!showLocationRationale && !showNotificationRationale) {
             permissionLauncher.requestDoRunPermissions(context)
+        }
+    }
+
+    LaunchedEffect(key1 = state.isRunFinished) {
+        if (state.isRunFinished) {
+            onServiceToggle(false)
+        }
+    }
+
+    LaunchedEffect(key1 = state.shouldTrack) {
+        if (context.hasLocationPermission() && state.shouldTrack && !ActiveRunService.isServiceActive) {
+            onServiceToggle(true)
         }
     }
 
@@ -255,7 +271,8 @@ private fun ActiveRunScreenPreview() {
     DoRunTheme {
         ActiveRunEventScreen(
             state = ActiveRunState(),
-            onAction = {}
+            onServiceToggle = {},
+            onAction = {},
         )
     }
 }

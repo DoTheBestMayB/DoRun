@@ -2,16 +2,19 @@ package com.dothebestmayb.dorun
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navDeepLink
 import androidx.navigation.navigation
 import com.dothebestmayb.auth.presentation.intro.IntroScreenRoot
 import com.dothebestmayb.auth.presentation.login.LoginScreenRoot
 import com.dothebestmayb.auth.presentation.register.RegisterScreenRoot
 import com.dothebestmayb.run.presentation.active_run.ActiveRunScreenRoot
+import com.dothebestmayb.run.presentation.active_run.service.ActiveRunService
 import com.dothebestmayb.run.presentation.run_overview.RunOverViewScreenRoot
 
 @Composable
@@ -97,8 +100,35 @@ private fun NavGraphBuilder.runGraph(navController: NavController) {
                 }
             )
         }
-        composable("active_run") {
-            ActiveRunScreenRoot()
+        composable(
+            route = "active_run",
+            deepLinks = listOf(
+                navDeepLink {
+                    uriPattern = "dorun://active_run"
+                }
+            )
+        ) {
+            val context = LocalContext.current
+
+            ActiveRunScreenRoot(
+                onServiceToggle = { shouldServiceRun ->
+                    if (shouldServiceRun) {
+                        context.startService(
+                            ActiveRunService.createStartIntent(
+                                context = context,
+                                activityClass = MainActivity::class.java,
+                            )
+                        )
+                    } else {
+                        // 여기서 startService는 새로운 Service를 또 시작하는 게 아니라, 기존 Service에 Intent를 전달함
+                        context.startService(
+                            ActiveRunService.createStopIntent(
+                                context = context,
+                            )
+                        )
+                    }
+                }
+            )
         }
     }
 }
