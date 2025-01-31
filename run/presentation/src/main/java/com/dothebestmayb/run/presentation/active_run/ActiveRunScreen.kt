@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.dothebestmayb.core.presentation.designsystem.DoRunTheme
 import com.dothebestmayb.core.presentation.designsystem.StartIcon
 import com.dothebestmayb.core.presentation.designsystem.StopIcon
+import com.dothebestmayb.core.presentation.designsystem.components.DoRunActionButton
 import com.dothebestmayb.core.presentation.designsystem.components.DoRunDialog
 import com.dothebestmayb.core.presentation.designsystem.components.DoRunFloatingActionButton
 import com.dothebestmayb.core.presentation.designsystem.components.DoRunOutlinedActionButton
@@ -162,6 +163,36 @@ private fun ActiveRunEventScreen(
                     .fillMaxWidth()
             )
         }
+    }
+
+    if (!state.shouldTrack && state.hasStartedRunning) {
+        DoRunDialog(
+            title = stringResource(R.string.running_is_paused),
+            onDismiss = {
+                onAction(ActiveRunAction.OnResumeRunClick)
+            },
+            description = stringResource(R.string.resume_or_finish_run),
+            primaryButton = {
+                DoRunActionButton(
+                    text = stringResource(R.string.resume),
+                    isLoading = false,
+                    onClick = {
+                        onAction(ActiveRunAction.OnResumeRunClick)
+                    },
+                    modifier = Modifier.weight(1f)
+                )
+            },
+            secondaryButton = {
+                DoRunOutlinedActionButton(
+                    text = stringResource(R.string.finish),
+                    isLoading = state.isSavingRun,
+                    onClick = {
+                        onAction(ActiveRunAction.OnFinishRunClick)
+                    },
+                    modifier = Modifier.weight(1f)
+                )
+            }
+        )
     }
 
     if (state.showLocationRationale || state.showNotificationRationale) {
