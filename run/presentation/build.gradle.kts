@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.dorun.android.feature.ui)
+    alias(libs.plugins.mapsplatform.secrets.plugin)
 }
 
 android {

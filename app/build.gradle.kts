@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.dorun.android.application.compose)
     alias(libs.plugins.dorun.jvm.ktor)
-    alias(libs.plugins.mapsplatform.secrets.plugin)
 }
 
 android {
