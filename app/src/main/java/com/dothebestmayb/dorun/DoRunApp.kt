@@ -4,6 +4,7 @@ import android.app.Application
 import com.dothebestmayb.auth.data.di.authDataModule
 import com.dothebestmayb.auth.presentation.di.authViewModelModule
 import com.dothebestmayb.core.data.di.coreDataModule
+import com.dothebestmayb.core.database.di.databaseModule
 import com.dothebestmayb.dorun.di.appModule
 import com.dothebestmayb.run.location.di.locationModule
 import com.dothebestmayb.run.presentation.di.runPresentationModule
@@ -37,6 +38,7 @@ class DoRunApp: Application() {
                 coreDataModule,
                 runPresentationModule,
                 locationModule,
+                databaseModule,
             )
         }
     }
